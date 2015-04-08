@@ -13,11 +13,14 @@ task bower(type: NodeTask, dependsOn: 'installGrunt') {
 grunt_build.dependsOn bower
 processResources.dependsOn grunt_build
 
+task dev(dependsOn: 'grunt_serve') {
+}
+grunt_serve.dependsOn bower
+
 node {
   version = '0.10.36'
   download = true
 }
-
 
 jar {
   from file('dist')

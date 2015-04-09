@@ -24,15 +24,12 @@
 
 <div class="row">
   <div class="col-md-12">
-    <div class="container">
-      <div class="row" ng-repeat="item in shoppingList.items">
-        <div class="col-md-2">
-          <input type="checkbox" ng-model="item.done" ng-click="saveShoppingList()">
-        </div>
-        <div class="col-md-10" ng-class="{done: item.done}">
-          {{ item.name }}
-        </div>
-      </div>
-    </div>
+    <ul class="list-group">
+      <li class="list-group-item" ng-repeat="item in shoppingList.items" ng-click="toggleItemDone(item)" ng-class="{done: item.done, pointer: true}">
+        <i class="fa fa-square-o fa-fw" ng-if="!item.done"></i>
+        <i class="fa fa-check-square-o fa-fw" ng-if="item.done"></i>
+        {{ item.name }}
+      </li>
+    </ul>
   </div>
 </div>

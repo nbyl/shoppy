@@ -17,4 +17,8 @@ angular.module('shoppyApp')
         growl.error('Saving shopping list failed:' + err.message);
       });
     };
+
+    $scope.toggleItemDone = function(item) {
+      item.done = !item.done;
+    }
   });

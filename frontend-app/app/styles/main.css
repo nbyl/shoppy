@@ -85,3 +85,7 @@ body {
 .done {
   text-decoration: line-through;
 }
+
+.pointer {
+  cursor: pointer;
+}

@@ -1,3 +1,4 @@
+include 'config-service'
 include 'frontend-app'
 include 'frontend-service'
 include 'registry-service'

@@ -1,3 +1,8 @@
 spring:
     application:
         name: frontend
+    cloud:
+        config:
+            discovery:
+                enabled: true
+            failFast: true

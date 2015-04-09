@@ -1,17 +1,10 @@
 'use strict';
 
-/**
- * @ngdoc function
- * @name shoppyApp.controller:MainCtrl
- * @description
- * # MainCtrl
- * Controller of the shoppyApp
- */
 angular.module('shoppyApp')
-  .controller('MainCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('MainCtrl', function ($scope, $location, ShoppingListService) {
+    $scope.createNewShoppingList = function() {
+      ShoppingListService.createShoppingList().then(function(response) {
+        $location.path('/shoppingList/' + response.id);
+      });
+    };
   });

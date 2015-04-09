@@ -1,13 +1,5 @@
 'use strict';
 
-/**
- * @ngdoc overview
- * @name shoppyApp
- * @description
- * # shoppyApp
- *
- * Main module of the application.
- */
 angular
   .module('shoppyApp', [
     'ngAnimate',
@@ -15,7 +7,8 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'pouchdb'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -26,6 +19,10 @@ angular
       .when('/about', {
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
+      })
+      .when('/shoppingList/:shoppingListId', {
+        templateUrl: 'views/shoppinglist.html',
+        controller: 'ShoppinglistCtrl'
       })
       .otherwise({
         redirectTo: '/'

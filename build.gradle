@@ -1,3 +1,6 @@
+ext.springBootVersion = "1.2.3.RELEASE"
+ext.springCloudVersion = "1.0.0.RELEASE"
+
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.3'
+    gradleVersion = "2.3"
 }

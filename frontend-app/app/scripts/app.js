@@ -8,6 +8,7 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
+    'angular-growl',
     'pouchdb'
   ])
   .config(function ($routeProvider) {

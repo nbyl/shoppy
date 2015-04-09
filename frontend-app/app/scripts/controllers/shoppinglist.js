@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('shoppyApp')
-  .controller('ShoppinglistCtrl', function ($scope, $routeParams, $location, ShoppingListService) {
+  .controller('ShoppinglistCtrl', function ($scope, $routeParams, $location, growl, ShoppingListService) {
     $scope.shoppingListId = $routeParams.shoppingListId;
 
     $scope.shoppingListLocation = $location.absUrl();
@@ -12,7 +12,9 @@ angular.module('shoppyApp')
 
     $scope.saveShoppingList = function(){
       ShoppingListService.saveShoppingList($scope.shoppingList).then(function() {
-        console.log('list saved');
+        growl.info('Shopping list saved.');
+      }).catch(function(err) {
+        growl.error('Saving shopping list failed:' + err.message);
       });
     };
   });

@@ -1,0 +1,5 @@
+zuul:
+    ignoredServices: frontend
+    routes:
+        frontend: /app/**
+        

@@ -1,0 +1,46 @@
+<div class="page-header">
+  <h1>my shoppy list</h1>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        Public ID:
+      </div>
+      <div clss="col-md-8">
+        {{ shoppingListId }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        Public link:
+      </div>
+      <div clss="col-md-8">
+        <a ng-href="{{shoppingListLocation}}">Copy me</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form class="form-inline" role="form" ng-submit="addItem()">
+      <div class="form-group">
+        <input class="form-control" type="text" id="itemToAdd" placeholder="Add a new item to list here..." ng-model="itemToAdd">
+      </div>
+      <button type="submit" class="btn btn-primary"><i class="fa fa-plus-square fa-fw"></i>&nbsp;Add</button>
+    </form>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item" ng-repeat="item in shoppingList.items" ng-click="toggleItemDone(item)" ng-class="{done: item.done, pointer: true}">
+        <i class="fa fa-square-o fa-fw" ng-if="!item.done"></i>
+        <i class="fa fa-check-square-o fa-fw" ng-if="item.done"></i>
+        {{ item.name }}
+      </li>
+    </ul>
+  </div>
+</div>

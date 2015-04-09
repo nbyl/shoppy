@@ -1,0 +1,35 @@
+plugins {
+    id "com.moowork.grunt" version "0.9"
+}
+
+apply plugin: 'com.moowork.grunt'
+apply plugin: 'java'
+
+task bower(type: NodeTask, dependsOn: 'installGrunt') {
+  script = file('node_modules/bower/bin/bower')
+  args = ['install']
+}
+
+grunt_build.dependsOn bower
+processResources.dependsOn grunt_build
+
+task dev(dependsOn: 'grunt_serve') {
+}
+grunt_serve.dependsOn bower
+
+node {
+  version = '0.10.36'
+  download = true
+}
+
+jar {
+  from file('dist')
+
+    eachFile { details ->
+      details.path = details.path.startsWith('META-INF') ?: 'static/' + details.path
+  }
+  // Jar contains duplicate empty folders, see Gradle issue:
+  // http://issues.gradle.org/browse/GRADLE-1830
+  // so we need to set includeEmptyDirs to false
+  includeEmptyDirs = false
+}

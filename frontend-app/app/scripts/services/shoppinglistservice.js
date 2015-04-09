@@ -10,8 +10,14 @@ angular.module('shoppyApp')
         var shoppingList = {
           'items': []
         };
-        shoppingList.items.push('Milk');
+        shoppingList.items.push({'name': 'Milk'});
         return db.post(shoppingList);
+      },
+      getShoppingList: function(id) {
+        return db.get(id);
+      },
+      saveShoppingList: function(shoppingList) {
+        return db.put(shoppingList);
       }
     };
   });

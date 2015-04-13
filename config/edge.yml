@@ -1,5 +1,5 @@
 zuul:
-    ignoredServices: frontend
+    ignoredServices: frontend list
     routes:
         frontend: /app/**
-        
+        list: /api/lists/**

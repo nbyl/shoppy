@@ -1,0 +1,10 @@
+spring:
+    application:
+        name: list
+    cloud:
+        config:
+            discovery:
+                enabled: true
+            failFast: true
+server:
+    port: 8082

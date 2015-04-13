@@ -2,4 +2,4 @@ zuul:
     ignoredServices: frontend list
     routes:
         frontend: /app/**
-        list: /api/lists/**
+        list: /api/shoppinglists/**

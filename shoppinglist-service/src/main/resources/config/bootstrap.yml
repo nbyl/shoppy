@@ -1,6 +1,6 @@
 spring:
     application:
-        name: list
+        name: shoppinglist
     cloud:
         config:
             discovery:

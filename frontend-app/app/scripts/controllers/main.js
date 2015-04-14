@@ -1,10 +1,15 @@
 'use strict';
 
 angular.module('shoppyApp')
-  .controller('MainCtrl', function ($scope, $location, ShoppingListService) {
+  .controller('MainCtrl', function ($scope, $location, ShoppingList ) {
+
     $scope.createNewShoppingList = function() {
-      ShoppingListService.createShoppingList().then(function(response) {
-        $location.path('/shoppingList/' + response.id);
+      var shoppingList = {};
+
+      ShoppingList.post(shoppingList).then(function(response) {
+        console.log(response);
+        //$location.path('/shoppingList/' + response.id);
       });
     };
+
   });

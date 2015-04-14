@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('shoppyApp')
-  .controller('ShoppinglistCtrl', function ($scope, $routeParams, $location, growl, ShoppingListService) {
+  .controller('ShoppinglistCtrl', function ($scope, $routeParams, $location, growl, ShoppingList) {
+
     $scope.shoppingListId = $routeParams.shoppingListId;
 
     $scope.shoppingListLocation = $location.absUrl();

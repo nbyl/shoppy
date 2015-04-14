@@ -8,7 +8,8 @@
  * Controller of the shoppyApp
  */
 angular.module('shoppyApp')
-  .controller('NavbarCtrl', function ($scope, $location, growl, ShoppingListService) {
+  .controller('NavbarCtrl', function ($scope, $location, growl, ShoppingList) {
+
     $scope.loadShoppingList = function() {
       ShoppingListService.getShoppingList($scope.shoppingListId).then(function() {
         $location.path('/shoppingList/' + $scope.shoppingListId);
@@ -18,4 +19,5 @@ angular.module('shoppyApp')
         growl.error('Loading shopping list failed: ' + err.message);
       });
     };
+
   });

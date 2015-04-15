@@ -1,23 +1,41 @@
 'use strict';
 
 angular.module('shoppyApp')
-  .factory('ShoppingListService', function (pouchDB) {
+  .factory('ShoppingListService', function($q, Restangular) {
 
-    var db = pouchDB('shoppingLists');
+    var baseShoppingLists = Restangular.all('shoppinglists');
 
     return {
-      createShoppingList: function() {
+      createNewShoppingList: function() {
+        var deferred = $q.defer();
+
         var shoppingList = {
-          'items': []
+          items: [
+            {
+              'name': 'Milk'
+            }
+          ]
         };
-        shoppingList.items.push({'name': 'Milk'});
-        return db.post(shoppingList);
+        baseShoppingLists.post(shoppingList).then(function(response) {
+          var location = response.headers('location');
+          var lastSlash = location.lastIndexOf('/');
+
+          deferred.resolve(location.substr(lastSlash + 1));
+        });
+
+        return deferred.promise;
       },
       getShoppingList: function(id) {
-        return db.get(id);
+        var deferred = $q.defer();
+
+        Restangular.one('shoppinglists', id).get().then(function(response) {
+          deferred.resolve(response.data);
+        });
+
+        return deferred.promise;
       },
       saveShoppingList: function(shoppingList) {
-        return db.put(shoppingList);
+        return shoppingList.put();
       }
     };
   });

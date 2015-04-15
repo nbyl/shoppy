@@ -2,9 +2,11 @@
 
 angular.module('shoppyApp')
   .controller('MainCtrl', function ($scope, $location, ShoppingListService) {
+
     $scope.createNewShoppingList = function() {
-      ShoppingListService.createShoppingList().then(function(response) {
-        $location.path('/shoppingList/' + response.id);
+      ShoppingListService.createNewShoppingList().then(function(id) {
+        $location.path('/shoppingList/' + id);
       });
     };
+
   });

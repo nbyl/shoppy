@@ -52,6 +52,6 @@ angular.module('shoppyApp')
 
     // Using self link for self reference resources
     RestangularProvider.setRestangularFields({
-      selfLink: 'self.link'
+      selfLink: '_links.self.href'
     });
   });

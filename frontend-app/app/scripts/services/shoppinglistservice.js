@@ -1,19 +1,22 @@
 'use strict';
 
 angular.module('shoppyApp')
-  .factory('ShoppingList', function(Restangular) {
-    return Restangular.service('shoppinglists');
-  });
+  .factory('ShoppingListService', function($q, Restangular) {
 
-angular.module('shoppyApp')
-  .factory('ShoppingListService', function($q, ShoppingList) {
+    var baseShoppingLists = Restangular.all('shoppinglists');
 
     return {
       createNewShoppingList: function() {
         var deferred = $q.defer();
 
-        var shoppingList = {};
-        ShoppingList.post(shoppingList).then(function(response) {
+        var shoppingList = {
+          items: [
+            {
+              'name': 'Milk'
+            }
+          ]
+        };
+        baseShoppingLists.post(shoppingList).then(function(response) {
           var location = response.headers('location');
           var lastSlash = location.lastIndexOf('/');
 
@@ -21,6 +24,18 @@ angular.module('shoppyApp')
         });
 
         return deferred.promise;
+      },
+      getShoppingList: function(id) {
+        var deferred = $q.defer();
+
+        Restangular.one('shoppinglists', id).get().then(function(response) {
+          deferred.resolve(response.data);
+        });
+
+        return deferred.promise;
+      },
+      saveShoppingList: function(shoppingList) {
+        return shoppingList.put();
       }
-    }
+    };
   });

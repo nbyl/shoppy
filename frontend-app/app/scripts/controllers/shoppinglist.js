@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('shoppyApp')
-  .controller('ShoppinglistCtrl', function ($scope, $routeParams, $location, growl, ShoppingList) {
+  .controller('ShoppinglistCtrl', function ($scope, $routeParams, $location, growl, ShoppingListService) {
 
     $scope.shoppingListId = $routeParams.shoppingListId;
 

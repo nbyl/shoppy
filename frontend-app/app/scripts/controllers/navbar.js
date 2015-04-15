@@ -8,7 +8,7 @@
  * Controller of the shoppyApp
  */
 angular.module('shoppyApp')
-  .controller('NavbarCtrl', function ($scope, $location, growl, ShoppingList) {
+  .controller('NavbarCtrl', function ($scope, $location, growl, ShoppingListService) {
 
     $scope.loadShoppingList = function() {
       ShoppingListService.getShoppingList($scope.shoppingListId).then(function() {

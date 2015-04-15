@@ -9,8 +9,7 @@ angular
     'ngSanitize',
     'ngTouch',
     'angular-growl',
-    'restangular',
-    'pouchdb'
+    'restangular'
   ]);
 
 angular.module('shoppyApp')
@@ -36,6 +35,8 @@ angular.module('shoppyApp')
 angular.module('shoppyApp')
   .config(function (RestangularProvider) {
     RestangularProvider.setBaseUrl('/api');
+
+    RestangularProvider.setFullResponse(true);
 
     // Set an interceptor in order to parse the API response
     // when getting a list of resources

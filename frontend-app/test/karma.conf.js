@@ -28,8 +28,6 @@ module.exports = function(config) {
       'bower_components/angular-route/angular-route.js',
       'bower_components/angular-sanitize/angular-sanitize.js',
       'bower_components/angular-touch/angular-touch.js',
-      'bower_components/pouchdb/dist/pouchdb.js',
-      'bower_components/angular-pouchdb/dist/angular-pouchdb.js',
       'bower_components/angular-growl-v2/build/angular-growl.js',
       'bower_components/Bootflat/bootflat/js/icheck.min.js',
       'bower_components/Bootflat/bootflat/js/jquery.fs.selecter.min.js',

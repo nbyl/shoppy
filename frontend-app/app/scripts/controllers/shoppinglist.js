@@ -22,7 +22,7 @@ angular.module('shoppyApp')
     $scope.toggleItemDone = function(item) {
       item.done = !item.done;
       $scope.saveShoppingList();
-    }
+    };
 
     $scope.addItem = function() {
       var item = {

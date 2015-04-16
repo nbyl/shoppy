@@ -28,6 +28,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.hostmanager.enabled = true
   config.hostmanager.manage_host = true
 
+  config.vm.provision :shell do |shell|
+    shell.inline = "mkdir -p /etc/puppet/modules;
+                    if ! `puppet module list | grep -q supervisor`; then puppet module install ajcrowe-supervisord; fi;
+                    "
+  end
+
   config.vm.provision "puppet" do |puppet|
     puppet.manifests_path = "vagrant/manifests"
     puppet.module_path = "vagrant/modules"

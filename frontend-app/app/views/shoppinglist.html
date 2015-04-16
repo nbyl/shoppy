@@ -18,6 +18,14 @@
       <div clss="col-md-8">
         <a ng-href="{{shoppingListLocation}}">Copy me</a>
       </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          Send as email:
+        </div>
+        <div clss="col-md-8">
+          <a ng-href="{{shoppingListLocation}}">Copy me</a>
+        </div>
     </div>
   </div>
 </div>
@@ -42,5 +50,16 @@
         {{ item.name }}
       </li>
     </ul>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form class="form-inline" role="form" ng-submit="sendShoppingList()">
+      <div class="form-group">
+        <input class="form-control" type="email" id="recipient" placeholder="Send this shopping list via email..." ng-model="recipient">
+      </div>
+      <button type="submit" class="btn btn-primary"><i class="fa fa-mail-forward fa-fw"></i>&nbsp;Send</button>
+    </form>
   </div>
 </div>

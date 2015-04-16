@@ -1,4 +1,4 @@
-package com.github.nbyl.shoppy.shoppinglist.web.dto;
+package com.github.nbyl.shoppy.shoppinglist.domain;
 
 
 public class Recipient {

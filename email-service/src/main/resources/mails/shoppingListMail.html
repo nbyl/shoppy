@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Your shoppy list</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<p>
+    Hello <span th:text="${mail.recipient.email}">test@example.com</span>,
+</p>
+<p>
+    Someone has sent you the following shopping list:
+</p>
+<ul>
+    <li th:each="item : ${mail.shoppingList.items}" th:text="${item.name}">
+        Milk
+    </li>
+</ul>
+<p>
+    Greetings, the shoppy team
+</p>
+</body>
+</html>

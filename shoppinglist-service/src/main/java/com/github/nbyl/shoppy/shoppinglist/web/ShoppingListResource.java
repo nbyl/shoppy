@@ -2,6 +2,7 @@ package com.github.nbyl.shoppy.shoppinglist.web;
 
 import com.github.nbyl.shoppy.shoppinglist.domain.ShoppingList;
 import com.github.nbyl.shoppy.shoppinglist.persistence.ShoppingListRepository;
+import com.github.nbyl.shoppy.shoppinglist.web.dto.Recipient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -21,7 +22,7 @@ public class ShoppingListResource {
     private ShoppingListRepository repository;
 
     @RequestMapping(value = "/shoppinglists/{id}/send", method = RequestMethod.POST)
-    public ResponseEntity sendShoppingList(@PathVariable Integer id, @RequestBody String recipient) {
+    public ResponseEntity sendShoppingList(@PathVariable Integer id, @RequestBody Recipient recipient) {
         return Optional.ofNullable(repository.findOne(id))
                 .map(shoppingList -> {
                     sendShoppingListEmail(shoppingList, recipient);
@@ -30,7 +31,7 @@ public class ShoppingListResource {
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    private void sendShoppingListEmail(ShoppingList shoppingList, String recipient) {
-        LOGGER.info("Sending shopping list {} to {}", shoppingList.getId(), recipient);
+    private void sendShoppingListEmail(ShoppingList shoppingList, Recipient recipient) {
+        LOGGER.info("Sending shopping list {} to {}", shoppingList.getId(), recipient.getEmail());
     }
 }

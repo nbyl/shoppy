@@ -1,6 +1,6 @@
 class supervisord-base {
   package{ 'curl':
-    ensure  => installed
+    ensure => installed
   }
 
   class { 'supervisord':

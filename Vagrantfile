@@ -30,6 +30,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provision :shell do |shell|
     shell.inline = "mkdir -p /etc/puppet/modules;
+                    if ! `puppet module list | grep -q java8`; then puppet module install spantree-java8; fi;
                     if ! `puppet module list | grep -q supervisor`; then puppet module install ajcrowe-supervisord; fi;
                     "
   end

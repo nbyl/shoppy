@@ -31,4 +31,12 @@ angular.module('shoppyApp')
       $scope.shoppingList.items.push(item);
       $scope.saveShoppingList();
     };
+
+    $scope.sendShoppingList = function() {
+      ShoppingListService.sendShoppingList($scope.shoppingList, $scope.recipient).then(function() {
+        growl.success('Mail send to ' + $scope.recipient);
+      }, function(error) {
+        growl.error('Sending mail failed: ' + error.statusText);
+      });
+    };
   });

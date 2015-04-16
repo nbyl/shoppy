@@ -36,6 +36,13 @@ angular.module('shoppyApp')
       },
       saveShoppingList: function(shoppingList) {
         return shoppingList.put();
+      },
+      sendShoppingList: function(shoppingList, email) {
+        var recipient  = {
+          'email': email
+        };
+
+        return shoppingList.post('send', recipient);
       }
     };
   });

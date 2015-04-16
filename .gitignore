@@ -1,5 +1,8 @@
 # Created by https://www.gitignore.io
 
+### vagrant ###
+.vagrant
+
 ### node.js ###
 
 node_modules

@@ -7,9 +7,9 @@ define shoppy-service ($serviceName) {
   }
 
   file{ "/opt/shoppy/$serviceName":
-    ensure => directory,
+    ensure  => directory,
     recurse => remote,
-    source => "/vagrant/$serviceName-service/build/install/$serviceName-service",
+    source  => "/vagrant/$serviceName-service/build/install/$serviceName-service",
     require => File["/opt/shoppy"]
   }
 
@@ -22,6 +22,6 @@ define shoppy-service ($serviceName) {
     environment => {
       "HOME"  => "/home/vagrant"
     },
-    require => File["/opt/shoppy/$serviceName"]
+    require     => File["/opt/shoppy/$serviceName"]
   }
 }

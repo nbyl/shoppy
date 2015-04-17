@@ -1,10 +1,23 @@
-define shoppy-service ($serviceName) {
-  include java8
-  include supervisord-base
-
+class shoppy-service::base {
   file{ "/opt/shoppy":
     ensure => directory
   }
+
+  file{ "/opt/shoppy/bin":
+    ensure  => directory,
+    require => File["/opt/shoppy"]
+  }
+}
+
+define shoppy-service (
+    $serviceName,
+    $waitForRegistry = false
+  ) {
+
+  include java8
+  include supervisord-base
+
+  include shoppy-service::base
 
   file{ "/opt/shoppy/$serviceName":
     ensure  => directory,
@@ -13,8 +26,14 @@ define shoppy-service ($serviceName) {
     require => File["/opt/shoppy"]
   }
 
+  file{ "/opt/shoppy/bin/$serviceName":
+    ensure  => present,
+    mode    => '0755',
+    content => template("shoppy-service/start-script.erb")
+  }
+
   supervisord::program { "$serviceName-service":
-    command     => "/opt/shoppy/$serviceName/bin/$serviceName-service",
+    command     => "/opt/shoppy/bin/$serviceName",
     directory   => "/opt/shoppy",
     autostart   => true,
     autorestart => true,
@@ -22,6 +41,6 @@ define shoppy-service ($serviceName) {
     environment => {
       "HOME"  => "/home/vagrant"
     },
-    require     => File["/opt/shoppy/$serviceName"]
+    require     => [File["/opt/shoppy/$serviceName"], File["/opt/shoppy/bin/$serviceName"]]
   }
 }

@@ -1,4 +1,5 @@
-include tzdata
+class{ "tzdata":
+}
 
 package{ "g++":
   ensure => installed
@@ -36,4 +37,7 @@ shoppy-service{ "frontend":
 shoppy-service{ "shoppinglist":
   serviceName         => "shoppinglist",
   waitForConfigServer => true
+}
+
+class{ "shoppy-docs":
 }

@@ -33,6 +33,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                     if ! `puppet module list | grep -q java8`; then puppet module install spantree-java8; fi;
                     if ! `puppet module list | grep -q supervisor`; then puppet module install ajcrowe-supervisord; fi;
                     if ! `puppet module list | grep -q mailcatcher`; then puppet module install actionjack-mailcatcher; fi;
+                    if ! `puppet module list | grep -q nginx`; then puppet module install jfryman-nginx; fi;
                     "
   end
 

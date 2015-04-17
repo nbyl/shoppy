@@ -9,7 +9,7 @@ set -x
 REGISTRY_TRY=0
 REGISTRY_URL=http://localhost:8761/eureka/apps
 
-curl ${REGISTRY_URL} > /dev/null
+curl -s ${REGISTRY_URL} > /dev/null
 while [ $? -ne 0 ]
 do
   if [ ${REGISTRY_TRY} -gt 10 ]; then
@@ -22,7 +22,7 @@ do
 
   REGISTRY_TRY=$((REGISTRY_TRY + 1))
 
-  curl ${REGISTRY_URL} > /dev/null
+  curl -s ${REGISTRY_URL} > /dev/null
 done
 ###############################################################################
 <% end %>
@@ -34,7 +34,7 @@ done
 REGISTRY_TRY=0
 REGISTRY_URL=http://localhost:8761/eureka/apps
 
-curl ${REGISTRY_URL} | grep -q CONFIGSERVER
+curl -s ${REGISTRY_URL} | grep -q CONFIGSERVER
 while [ $? -ne 0 ]
 do
   if [ ${REGISTRY_TRY} -gt 10 ]; then
@@ -47,7 +47,7 @@ do
 
   REGISTRY_TRY=$((REGISTRY_TRY + 1))
 
-  curl ${REGISTRY_URL} | grep -q CONFIGSERVER
+  curl -s ${REGISTRY_URL} | grep -q CONFIGSERVER
 done
 ###############################################################################
 <% end %>

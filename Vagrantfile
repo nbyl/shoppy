@@ -20,7 +20,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #   vb.gui = true
     vb.cpus = 4
     vb.customize ["modifyvm", :id, "--ioapic", "on"]
-    vb.customize ["modifyvm", :id, "--memory", "1024"]
+    vb.customize ["modifyvm", :id, "--memory", "2048"]
   end
 
   # add this hostname to the host system

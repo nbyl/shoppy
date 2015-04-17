@@ -7,7 +7,7 @@ set -x
 ### waiting for the registry
 
 REGISTRY_TRY=0
-REGISTRY_URL=http://localhost:8761/apps
+REGISTRY_URL=http://localhost:8761/eureka/apps
 
 curl ${REGISTRY_URL} > /dev/null
 while [ $? -ne 0 ]
@@ -23,6 +23,31 @@ do
   REGISTRY_TRY=$((REGISTRY_TRY + 1))
 
   curl ${REGISTRY_URL} > /dev/null
+done
+###############################################################################
+<% end %>
+
+<% if @waitForConfigServer %>
+###############################################################################
+### waiting for the config server
+
+REGISTRY_TRY=0
+REGISTRY_URL=http://localhost:8761/eureka/apps
+
+curl ${REGISTRY_URL} | grep -q CONFIGSERVER
+while [ $? -ne 0 ]
+do
+  if [ ${REGISTRY_TRY} -gt 10 ]; then
+    echo "Search for config server failed."
+    exit 1
+  fi
+
+  echo "Search for config server ${REGISTRY_TRY} times, sleeping..."
+  sleep 3
+
+  REGISTRY_TRY=$((REGISTRY_TRY + 1))
+
+  curl ${REGISTRY_URL} | grep -q CONFIGSERVER
 done
 ###############################################################################
 <% end %>

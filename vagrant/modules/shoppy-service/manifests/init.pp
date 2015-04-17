@@ -11,7 +11,8 @@ class shoppy-service::base {
 
 define shoppy-service (
     $serviceName,
-    $waitForRegistry = false
+    $waitForRegistry      = false,
+    $waitForConfigServer  = false
   ) {
 
   include java8

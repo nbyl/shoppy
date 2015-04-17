@@ -1,5 +1,13 @@
 include tzdata
 
+package{ "g++":
+  ensure => installed
+}
+
+class{ "mailcatcher":
+  require => Package["g++"]
+}
+
 shoppy-service{ "registry":
   serviceName => "registry"
 }
@@ -16,7 +24,8 @@ shoppy-service{ "edge":
 
 shoppy-service{ "email":
   serviceName         => "email",
-  waitForConfigServer => true
+  waitForConfigServer => true,
+  require             => Class["mailcatcher"]
 }
 
 shoppy-service{ "frontend":

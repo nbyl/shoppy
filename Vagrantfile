@@ -20,7 +20,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #   vb.gui = true
     vb.cpus = 4
     vb.customize ["modifyvm", :id, "--ioapic", "on"]
-    vb.customize ["modifyvm", :id, "--memory", "2048"]
+    vb.customize ["modifyvm", :id, "--memory", "4096"]
   end
 
   # add this hostname to the host system
@@ -32,6 +32,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     shell.inline = "mkdir -p /etc/puppet/modules;
                     if ! `puppet module list | grep -q java8`; then puppet module install spantree-java8; fi;
                     if ! `puppet module list | grep -q supervisor`; then puppet module install ajcrowe-supervisord; fi;
+                    if ! `puppet module list | grep -q mailcatcher`; then puppet module install actionjack-mailcatcher; fi;
                     "
   end
 

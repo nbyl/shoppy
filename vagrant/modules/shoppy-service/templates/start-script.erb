@@ -62,7 +62,7 @@ killService() {
   kill `cat ${PID_FILE}`
 }
 
-/opt/shoppy/<%= @serviceName %>/bin/<%= @name %>-service 2>&1 &
+/opt/shoppy/services/<%= @serviceName %>/bin/<%= @name %>-service 2>&1 &
 PID=$!
 echo ${PID} > ${PID_FILE}
 

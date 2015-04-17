@@ -1,0 +1,73 @@
+#!/bin/bash
+
+set -x
+
+<% if @waitForRegistry   %>
+###############################################################################
+### waiting for the registry
+
+REGISTRY_TRY=0
+REGISTRY_URL=http://localhost:8761/eureka/apps
+
+curl -s ${REGISTRY_URL} > /dev/null
+while [ $? -ne 0 ]
+do
+  if [ ${REGISTRY_TRY} -gt 10 ]; then
+    echo "Search for registry failed."
+    exit 1
+  fi
+
+  echo "Search for registry failed ${REGISTRY_TRY} times, sleeping..."
+  sleep 3
+
+  REGISTRY_TRY=$((REGISTRY_TRY + 1))
+
+  curl -s ${REGISTRY_URL} > /dev/null
+done
+###############################################################################
+<% end %>
+
+<% if @waitForConfigServer %>
+###############################################################################
+### waiting for the config server
+
+REGISTRY_TRY=0
+REGISTRY_URL=http://localhost:8761/eureka/apps
+
+curl -s ${REGISTRY_URL} | grep -q CONFIGSERVER
+while [ $? -ne 0 ]
+do
+  if [ ${REGISTRY_TRY} -gt 10 ]; then
+    echo "Search for config server failed."
+    exit 1
+  fi
+
+  echo "Search for config server ${REGISTRY_TRY} times, sleeping..."
+  sleep 3
+
+  REGISTRY_TRY=$((REGISTRY_TRY + 1))
+
+  curl -s ${REGISTRY_URL} | grep -q CONFIGSERVER
+done
+###############################################################################
+<% end %>
+
+###############################################################################
+### start the service
+
+PID_FILE=/tmp/<%= @serviceName %>.pid
+
+killService() {
+  echo "Sending shutdown signal to PID `cat ${PID_FILE}`"
+  kill `cat ${PID_FILE}`
+}
+
+/opt/shoppy/services/<%= @serviceName %>/bin/<%= @name %>-service 2>&1 &
+PID=$!
+echo ${PID} > ${PID_FILE}
+
+trap killService INT TERM KILL
+
+echo "Service started with PID ${PID}"
+
+wait ${PID}

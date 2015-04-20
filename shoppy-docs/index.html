@@ -35,11 +35,20 @@
         <div class="col-lg-6">
           <h4><a href="http://shoppy.dev:8080/" target="_blank">shoppy</a></h4>
           <p>The frontend of the application served by the zuul edge service.</p>
+
+          <h4><a href="http://shoppy.dev:8761/" target="_blank">Eureka Dashboard</a></h4>
+          <p>The dashboard of the Eureka service discovery.</p>
+
+          <h4><a href="http://shoppy.dev:8084/hystrix/monitor?stream=http%3A%2F%2Fshoppy.dev%3A8080%2Fhystrix.stream&title=Edge%20Service" target="_blank">Edge Service Dashboard</a></h4>
+          <p>Hystrix Dashboard for the edge service.</p>
+
+          <h4><a href="http://shoppy.dev:8084/hystrix/monitor?stream=http%3A%2F%2Fshoppy.dev%3A8083%2Fhystrix.stream&title=Email%20Service" target="_blank">Email Service Dashboard</a></h4>
+          <p>Hystrix Dashboard for the email service.</p>
         </div>
 
         <div class="col-lg-6">
-          <h4><a href="http://shoppy.dev:8761/" target="_blank">Eureka Dashboard</a></h4>
-          <p>The dashboard of the Eureka service discovery.</p>
+          <h4><a href="http://shoppy.dev:9001/" target="_blank">Service Manager</a></h4>
+          <p>Web interface of the supervisord process manager.</p>
 
           <h4><a href="http://shoppy.dev:1080/" target="_blank">Mailcatcher</a></h4>
           <p>User Interface to see all sent emails.</p>

@@ -10,5 +10,3 @@ spring:
         host: localhost
 server:
     port: 8084
-turbine:
-    appConfig: edge

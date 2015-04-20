@@ -3,12 +3,14 @@ package com.github.nbyl.shoppy.edge;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.context.annotation.ComponentScan;
 
 @ComponentScan
 @EnableAutoConfiguration
 @EnableEurekaClient
+@EnableHystrix
 @EnableZuulProxy
 public class Application {
 

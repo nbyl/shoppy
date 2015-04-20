@@ -16,10 +16,10 @@ repositories {
 
 dependencies {
     compile "org.springframework.boot:spring-boot-starter-actuator",
+            "org.springframework.boot:spring-boot-starter-integration",
             "org.springframework.boot:spring-boot-starter-web"
 
     compile "org.springframework.cloud:spring-cloud-commons:$springCloudVersion",
             "org.springframework.cloud:spring-cloud-starter-eureka:$springCloudVersion",
-            "org.springframework.cloud:spring-cloud-starter-hystrix-dashboard:$springCloudVersion",
-            "org.springframework.cloud:spring-cloud-starter-turbine:$springCloudVersion"
+            "org.springframework.cloud:spring-cloud-starter-hystrix-dashboard:$springCloudVersion"
 }

@@ -19,7 +19,6 @@ dependencies {
             "org.springframework.boot:spring-boot-starter-web"
 
     compile "org.springframework.cloud:spring-cloud-starter-eureka:$springCloudVersion",
+            "org.springframework.cloud:spring-cloud-starter-hystrix:$springCloudVersion",
             "org.springframework.cloud:spring-cloud-starter-zuul:$springCloudVersion"
-
-    runtime project(":frontend-app")
 }

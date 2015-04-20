@@ -9,9 +9,6 @@ class{ "mailcatcher":
   require => Package["g++"]
 }
 
-class{ "::rabbitmq":
-}
-
 shoppy-service{ "registry":
   serviceName => "registry"
 }
@@ -44,8 +41,7 @@ shoppy-service{ "shoppinglist":
 
 shoppy-service{ "dashboard":
   serviceName         => "dashboard",
-  waitForConfigServer => true,
-  require             => Class["::rabbitmq"]
+  waitForConfigServer => true
 }
 
 class{ "shoppy-docs":

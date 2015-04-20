@@ -1,0 +1,14 @@
+spring:
+    application:
+        name: dashboard
+    cloud:
+        config:
+            discovery:
+                enabled: true
+            failFast: true
+    mail:
+        host: localhost
+server:
+    port: 8084
+turbine:
+    appConfig: edge

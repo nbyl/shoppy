@@ -1,4 +1,5 @@
 include 'config-service'
+include 'dashboard-service'
 include 'edge-service'
 include 'email-service'
 include 'frontend-app'

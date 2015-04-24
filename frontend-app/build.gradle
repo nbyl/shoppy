@@ -5,7 +5,7 @@ plugins {
 apply plugin: 'com.moowork.grunt'
 apply plugin: 'java'
 
-task bower(type: NodeTask, dependsOn: 'installGrunt') {
+task bower(type: NodeTask, dependsOn: 'npmInstall') {
   script = file('node_modules/bower/bin/bower')
   args = ['install']
 }
